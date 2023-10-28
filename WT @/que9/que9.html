@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Grade Calculator</title>
+</head>
+
+<body>
+    <h1>Student Grade Calculator</h1>
+
+    <?php
+    // Student's marks for different subjects
+    $maths = 85;
+    $science = 90;
+    $history = 78;
+    $english = 88;
+    
+    // Calculate the total marks
+    $totalMarks = $maths + $science + $history + $english;
+
+    // Calculate the average marks
+    $averageMarks = $totalMarks / 4;
+
+    // Determine the grade based on the average marks
+    $grade = '';
+
+    if ($averageMarks >= 90) {
+        $grade = 'A+';
+    } elseif ($averageMarks >= 80) {
+        $grade = 'A';
+    } elseif ($averageMarks >= 70) {
+        $grade = 'B';
+    } elseif ($averageMarks >= 60) {
+        $grade = 'C';
+    } else {
+        $grade = 'F';
+    }
+
+    // Display the results
+    echo "<p>Total Marks: $totalMarks</p>";
+    echo "<p>Average Marks: $averageMarks</p>";
+    echo "<p>Grade: $grade</p>";
+    ?>
+
+</body>
+
+</html>

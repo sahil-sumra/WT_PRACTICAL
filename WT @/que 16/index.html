@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registration Form</title>
+</head>
+
+<body>
+    <h1>Registration Form</h1>
+    <form id="registrationForm" onsubmit="return validateForm()">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name"
+            onmouseover="displayHint('Name should contain only alphabets.')">
+        <br>
+        <label for="mobile">Mobile Number:</label>
+        <input type="text" id="mobile" name="mobile" placeholder="Enter your mobile number"
+            onmouseover="displayHint('Mobile number should have exactly 10 characters.')">
+        <br>
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" placeholder="Enter your email"
+            onmouseover="displayHint('Email should be in a valid format.')">
+        <br>
+        <input type="submit" value="Register">
+    </form>
+
+    <p id="hint"></p>
+
+    <script>
+        function displayHint(hintText) {
+            document.getElementById("hint").innerHTML = hintText;
+        }
+
+        function validateForm() {
+            // Name validation (only alphabets)
+            const name = document.getElementById("name").value;
+            const nameRegex = /^[A-Za-z]+$/;
+            if (!name.match(nameRegex)) {
+                alert("Name should contain only alphabet characters.");
+                return false;
+            }
+
+            // Mobile number validation (exactly 10 characters)
+            const mobile = document.getElementById("mobile").value;
+            if (mobile.length !== 10 || isNaN(mobile)) {
+                alert("Mobile number should have exactly 10 numeric characters.");
+                return false;
+            }
+
+            // Email validation (valid format)
+            const email = document.getElementById("email").value;
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!email.match(emailRegex)) {
+                alert("Email should be in a valid format.");
+                return false;
+            }
+
+            return true; // Form is valid
+        }
+    </script>
+</body>
+
+</html>

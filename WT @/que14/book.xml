@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE bookstore [
+ <!ELEMENT bookstore (book+)>
+ <!ELEMENT book (name, author, publisher, price)>
+ <!ELEMENT name (#PCDATA)>
+ <!ELEMENT author (#PCDATA)>
+ <!ELEMENT publisher (#PCDATA)>
+ <!ELEMENT price (#PCDATA)>
+]>
+<bookstore>
+ <book>
+ <name>Book 1</name>
+ <author>Author 1</author>
+ <publisher>Publisher 1</publisher>
+ <price>19.99</price>
+ </book>
+ <book>
+ <name>Book 2</name>
+ <author>Author 2</author>
+ <publisher>Publisher 2</publisher>
+ <price>29.99</price>
+ </book>
+</bookstore>
+Books.xsit
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+ <xsl:output method="html" indent="yes"/>
+ <xsl:template match="/bookstore">
+ <html>
+
+ [8:43 am, 10/10/2023] Javid: <head>
+ <style>
+ table {
+ border-collapse: collapse;
+ width: 100%;
+ }
+ th, td {
+ border: 1px solid black;
+ padding: 8px;
+ text-align: left;
+ }
+ th {
+ background-color: #f2f2f2;
+ }
+ </style>
+ </head>
+ <body>
+ <h1>Book Information</h1>
+ <table>
+ <tr>
+ <th>Name</th>
+ <th>Author</th>
+ <th>Publisher</th>
+ <th>Price</th>
+ </tr>
+ <!-- Apply a template for each book -->
+ <xsl:apply-templates select="book"/>
+ </table>
+ </body>
+ </html>
+ </xsl:template>
+ <xsl:template match="book">
+ <tr>
+ <td><xsl:value-of select="name"/></td>
+ <td><xsl:value-of select="author"/></td>
+ <td><xsl:value-of select="publisher"/></td>
+ <td><xsl:value-of select="price"/></td>
+ </tr>
+</xsl:template>
+</xsl:stylesheet>

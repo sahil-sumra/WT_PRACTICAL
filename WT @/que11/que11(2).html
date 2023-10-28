@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Upload Result</title>
+</head>
+<body>
+    <h1>File Upload Result</h1>
+    
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $allowedExtensions = ["pdf", "jpeg"];
+        $maxFileSize = 1000000; // 1000KB
+
+        if ($_FILES["file"]["error"] == 0) {
+            $filename = $_FILES["file"]["name"];
+            $fileSize = $_FILES["file"]["size"];
+            $fileExtension = pathinfo($filename, PATHINFO_EXTENSION);
+
+            if (in_array(strtolower($fileExtension), $allowedExtensions) && $fileSize <= $maxFileSize) {
+                // Move the uploaded file to a directory (e.g., "uploads/")
+                $uploadDirectory = "uploads/";
+                $targetFilePath = $uploadDirectory . $filename;
+
+                if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)) {
+                    echo "File uploaded successfully.<br>";
+                    echo "File Name: " . $filename . "<br>";
+                    echo "File Size: " . ($fileSize / 1000) . " KB<br>";
+                } else {
+                    echo "Error uploading file.<br>";
+                }
+            } else {
+                echo "Invalid file format or file size exceeds the limit.<br>";
+            }
+        } else {
+            echo "File upload error: " . $_FILES["file"]["error"] . "<br>";
+        }
+    }
+    ?>
+    
+    <p><a href="upload_form.php">Upload another file</a></p>
+</body>
+</html>

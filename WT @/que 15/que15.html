@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JavaScript Form</title>
+</head>
+
+<body>
+    <h1>JavaScript Form</h1>
+
+    <!-- Task 1: Show a message when the "Click Me" button is clicked -->
+    <button id="clickMeButton" onclick="showMessage()">Click Me</button>
+    <p id="message"></p>
+
+    <!-- Task 2: Check if a number is even or odd -->
+    <label for="number">Enter an Integer Number:</label>
+    <input type="number" id="number" name="number">
+    <button onclick="checkNumber()">Check</button>
+    <p id="evenOddResult"></p>
+
+    <!-- Task 3: Perform arithmetic operations -->
+    <label for="num1">Enter Number 1:</label>
+    <input type="number" id="num1" name="num1">
+    <label for="num2">Enter Number 2:</label>
+    <input type="number" id="num2" name="num2">
+    <br>
+    <input type="radio" id="add" name="operation" value="add"> <label for="add">Add</label>
+    <input type="radio" id="subtract" name="operation" value="subtract"> <label for="subtract">Subtract</label>
+    <input type="radio" id="multiply" name="operation" value="multiply"> <label for="multiply">Multiply</label>
+    <input type="radio" id="divide" name="operation" value="divide"> <label for="divide">Divide</label>
+    <br>
+    <button onclick="performOperation()">Calculate</button>
+    <p id="operationResult"></p>
+
+    <script>
+        // Task 1: Show message on button click
+        function showMessage() {
+            document.getElementById("message").innerHTML = "You Clicked Me!";
+        }
+
+        // Task 2: Check if a number is even or odd
+        function checkNumber() {
+            const number = parseInt(document.getElementById("number").value);
+            if (isNaN(number)) {
+                document.getElementById("evenOddResult").innerHTML = "Please enter a valid number.";
+            } else if (number % 2 === 0) {
+                document.getElementById("evenOddResult").innerHTML = "The number is EVEN.";
+            } else {
+                document.getElementById("evenOddResult").innerHTML = "The number is ODD.";
+            }
+        }
+
+        // Task 3: Perform arithmetic operations
+        function performOperation() {
+            const num1 = parseFloat(document.getElementById("num1").value);
+            const num2 = parseFloat(document.getElementById("num2").value);
+            const operation = document.querySelector('input[name="operation"]:checked').value;
+
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById("operationResult").innerHTML = "Please enter valid numbers.";
+            } else {
+                switch (operation) {
+                    case "add":
+                        document.getElementById("operationResult").innerHTML = "Result: " + (num1 + num2);
+                        break;
+                    case "subtract":
+                        document.getElementById("operationResult").innerHTML = "Result: " + (num1 - num2);
+                        break;
+                    case "multiply":
+                        document.getElementById("operationResult").innerHTML = "Result: " + (num1 * num2);
+                        break;
+                    case "divide":
+                        if (num2 === 0) {
+                            document.getElementById("operationResult").innerHTML = "Division by zero is not allowed.";
+                        } else {
+                            document.getElementById("operationResult").innerHTML = "Result: " + (num1 / num2);
+                        }
+                        break;
+                    default:
+                        document.getElementById("operationResult").innerHTML = "Please select an operation.";
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

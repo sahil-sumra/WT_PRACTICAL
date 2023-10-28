@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+PRN:202109590002430
+<html>
+
+<head>
+    <title>Form Submission Result</title>
+</head>
+
+<body>
+    <h2>Form Submission Result</h2>
+    <?php 
+ if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+ $name = $_POST["name"]; 
+ $email = $_POST["email"]; 
+ $gender = $_POST["gender"]; 
+ $hobbies = isset($_POST["hobbies"]) ? implode(", ", 
+$_POST["hobbies"]) : "None"; 
+ $country = $_POST["country"]; 
+ echo "<p><b>Name</b>: $name</p>"; 
+ echo "<p><b>Email</b>: $email</p>"; 
+ echo "<p><b>Gender</b>: $gender</p>"; 
+ echo "<p><b>Hobbies</b>: $hobbies</p>"; 
+ echo "<p><b>Country: </b> $country</p>"; 
+ } 
+ ?>
+</body>
+
+</html>
